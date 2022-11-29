@@ -1,0 +1,183 @@
+
+@cartID = cartID
+@productID = productID
+@productSku = productSku
+@promoCode = promoCode
+@productSku = productSku
+@orderID = orderID
+@cartitemID = cartitemID
+@cartItemId1 = cartItemId1
+@cartItemId2 = cartItemId2
+
+
+### Get cart items
+GET {{baseUrl}}/carts/{{cartID}}/items 
+accept: application/json
+content-type: application/json
+
+
+
+### Add product to cart
+POST {{baseUrl}}/carts/{{cartID}}/items 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{productID}}",
+    "type": "cart_item",
+    "quantity": 1
+  }
+}
+### Add custom item to cart
+POST {{baseUrl}}/carts/{{cartID}}/items 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "custom_item",
+    "name": "My Custom Item",
+    "sku": "my-custom-item",
+    "description": "My first custom item!",
+    "quantity": 1,
+    "price": {
+      "amount": 20000,
+      "includes_tax": true
+    }
+  }
+}
+### Add a promotion
+POST {{baseUrl}}/carts/{{cartID}}/items 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "promotion_item",
+    "code": "PROMO1"
+  }
+}
+### Bulk add items to cart
+POST {{baseUrl}}/carts/{{cartID}}/items 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "type": "custom_item",
+      "name": "My Custom Item",
+      "sku": "my-custom-item",
+      "description": "My first custom item!",
+      "quantity": 1,
+      "price": {
+        "amount": 20000,
+        "includes_tax": true
+      }
+    },
+    {
+      "type": "cart_item",
+      "id": "{{productID}}",
+      "quantity": 1
+    },
+    {
+      "type": "cart_item",
+      "sku": "{{productSku}}",
+      "quantity": 1
+    },
+    {
+      "type": "promotion_item",
+      "code": "{{promoCode}}"
+    }
+  ],
+  "options": {
+    "add_all_or_nothing": false
+  }
+}
+### Re-order
+POST {{baseUrl}}/carts/{{cartID}}/items 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "type": "order_items",
+      "order_id": "{{orderID}}"
+    }
+  ],
+  "options": {
+    "add_all_or_nothing": false
+  }
+}
+### Cart merge
+POST {{baseUrl}}/carts/{{cartID}}/items 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "type": "cart_items",
+      "cart_id": "{{cartID}}"
+    }
+  ],
+  "options": {
+    "add_all_or_nothing": false
+  }
+}
+### Update a cart item
+PUT {{baseUrl}}/carts/{{cartID}}/items/{{cartitemID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{cartitemID}}",
+    "type": "cart_item",
+    "quantity": 2
+  }
+}
+### Bulk update items in cart
+PUT {{baseUrl}}/carts/{{cartID}}/items 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "id": "{{cartItemId1}}",
+      "quantity": 2
+    },
+    {
+      "id": "{{cartItemId2}}",
+      "quantity": 3
+    }
+  ],
+  "options": {
+    "update_all_or_nothing": false
+  }
+}
+### Delete a cart item
+DELETE {{baseUrl}}/carts/{{cartID}}/items/{{cartitemID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Delete all cart items
+DELETE {{baseUrl}}/carts/{{cartID}}/items 
+accept: application/json
+content-type: application/json
+
+
+

@@ -1,0 +1,99 @@
+
+@integrationID = integrationID
+@integrationJobId = integrationJobId
+
+
+### Get integration attributes
+GET {{baseUrl}}/integrations/attributes 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all integrations
+GET {{baseUrl}}/integrations 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get an integration
+GET {{baseUrl}}/integrations/{{integrationID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create an integration
+POST {{baseUrl}}/integrations 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "integration",
+    "name": "Order notification",
+    "description": "Send an order notification via email with discount code.",
+    "enabled": true,
+    "observes": [
+      "order.created"
+    ],
+    "integration_type": "webhook",
+    "configuration": {
+      "url": "https://yourwebsite.com/order-created-notification"
+    }
+  }
+}
+### Update an integration
+PUT {{baseUrl}}/integrations/{{integrationID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{integrationID}}",
+    "type": "integration",
+    "observes": [
+      "order.created"
+    ]
+  }
+}
+### Delete an integration
+DELETE {{baseUrl}}/integrations/{{integrationID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all logs
+GET {{baseUrl}}/integrations/logs 
+accept: application/json
+content-type: application/json
+
+
+
+### Get integration logs
+GET {{baseUrl}}/integrations/{{integrationID}}/logs 
+accept: application/json
+content-type: application/json
+
+
+
+### Get integration jobs
+GET {{baseUrl}}/integrations/{{integrationID}}/jobs 
+accept: application/json
+content-type: application/json
+
+
+
+### Get integration job logs
+GET {{baseUrl}}/integrations/{{integrationID}}/jobs/{{integrationJobId}}/logs 
+accept: application/json
+content-type: application/json
+
+
+

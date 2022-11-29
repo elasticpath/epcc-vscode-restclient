@@ -1,0 +1,68 @@
+
+@catalogId = catalogId
+@hierarchyId = hierarchyId
+@pricebookId = pricebookId
+
+
+### Get all catalogs
+GET {{pcmUrl}}/catalogs 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get catalog by id
+GET {{pcmUrl}}/catalogs/{{catalogId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create catalog
+POST {{pcmUrl}}/catalogs 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "catalog",
+    "attributes": {
+      "name": "Playtend Games",
+      "description": "Playtend brand games catalog",
+      "hierarchy_ids": [
+        "{{hierarchyId}}"
+      ],
+      "pricebook_id": "{{pricebookId}}"
+    }
+  }
+}
+### Update catalog
+PUT {{pcmUrl}}/catalogs/{{catalogId}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{catalogId}}",
+    "type": "catalog",
+    "attributes": {
+      "name": "Playtend Games",
+      "description": "Playtend Games catalog",
+      "hierarchy_ids": [
+        "{{hierarchyId}}"
+      ],
+      "pricebook_id": "{{pricebookId}}"
+    }
+  }
+}
+### Delete catalog
+DELETE {{pcmUrl}}/catalogs/{{catalogId}} 
+accept: application/json
+content-type: application/json
+
+
+

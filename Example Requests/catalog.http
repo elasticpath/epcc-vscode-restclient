@@ -1,0 +1,106 @@
+
+@hierarchyId = hierarchyId
+@nodeId = nodeId
+@productId = productId
+
+
+### Get shopper catalog
+GET {{authUrl}}/catalog 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all hierarchies
+GET {{authUrl}}/catalog/hierarchies 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get hierarchy by id
+GET {{authUrl}}/catalog/hierarchies/{{hierarchyId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get hierarchy's child nodes
+GET {{authUrl}}/catalog/hierarchies/{{hierarchyId}}/children 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get hierarchy's nodes
+GET {{authUrl}}/catalog/hierarchies/{{hierarchyId}}/nodes 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get all nodes
+GET {{authUrl}}/catalog/nodes 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get node by id
+GET {{authUrl}}/catalog/nodes/{{nodeId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get node's child nodes
+GET {{authUrl}}/catalog/nodes/{{nodeId}}/relationships/children 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get all products
+GET {{authUrl}}/catalog/products 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get product by id
+GET {{authUrl}}/catalog/products/{{productId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get a hierarchy's products
+GET {{authUrl}}/catalog/hierarchies/{{hierarchyId}}/products 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get a node's products
+GET {{authUrl}}/catalog/nodes/{{nodeId}}/relationships/products 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+

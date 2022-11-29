@@ -1,0 +1,65 @@
+
+### Get settings attributes
+GET {{baseUrl}}/settings/attributes 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all settings
+GET {{baseUrl}}/settings 
+accept: application/json
+content-type: application/json
+
+
+
+### Update settings
+PUT {{baseUrl}}/settings 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "settings",
+    "calculation_method": "line"
+  }
+}
+### Get cart settings
+GET {{baseUrl}}/settings/cart 
+accept: application/json
+content-type: application/json
+
+
+
+### Update cart settings
+PUT {{baseUrl}}/settings/cart 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "settings",
+    "cart_expiry_days": 30
+  }
+}
+### Get account membership settings
+GET {{baseUrl}}/settings/account-membership 
+accept: application/json
+content-type: application/json
+
+
+
+### Update account membership settings
+PUT {{baseUrl}}/settings/account-membership 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "account_membership_setting",
+    "membership_limit": 13
+  }
+}

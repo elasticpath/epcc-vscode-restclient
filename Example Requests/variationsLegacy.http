@@ -1,0 +1,167 @@
+
+@variationID = variationID
+@optionID = optionID
+@modifierID = modifierID
+@productID = productID
+
+
+### Get all variations
+GET {{baseUrl}}/variations 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get single variation
+GET {{baseUrl}}/variations/{{variationID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a variation
+POST {{baseUrl}}/variations 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "product-variation",
+    "name": "Colour"
+  }
+}
+### Update a variation
+PUT {{baseUrl}}/variations/{{variationID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{variationID}}",
+    "type": "product-variation",
+    "name": "Paint Colour"
+  }
+}
+### Delete a variation
+DELETE {{baseUrl}}/variations/{{variationID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all variation options
+GET {{baseUrl}}/variations/{{variationID}}/options 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get single variation option
+GET {{baseUrl}}/products/{{variationID}}/options/{{optionID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a variation option
+POST {{baseUrl}}/variations/{{variationID}}/options 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "product-variation-option",
+    "name": "BLUE",
+    "description": "Our most popular color"
+  }
+}
+### Update a variation option
+PUT {{baseUrl}}/variations/{{variationID}}/options/{{optionID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{optionID}}",
+    "type": "product-variation-option",
+    "name": "RED",
+    "description": "Reddish"
+  }
+}
+### Delete a variation option
+DELETE {{baseUrl}}/variations/{{variationID}}/options/{{optionID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all product modifiers
+GET {{baseUrl}}/variations/{{variationID}}/options/{{optionID}}/modifiers 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get single product modifier
+GET {{baseUrl}}/products/{{variationID}}/options/{{optionID}}/modifiers/{{modifierID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a product modifier
+POST {{baseUrl}}/variations/{{variationID}}/options/{{optionID}}/modifiers 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "modifier",
+    "modifier_type": "name_equals",
+    "value": "Promotional product"
+  }
+}
+### Update a product modifier
+PUT {{baseUrl}}/variations/{{variationID}}/options/{{optionID}}/modifiers/{{modifierID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{modifierID}}",
+    "type": "modifier",
+    "modifier_type": "name_equals",
+    "value": "Updated Paint Colour"
+  }
+}
+### Delete a product modifier
+DELETE {{baseUrl}}/variations/{{variationID}}/options/{{optionID}}/modifiers/{{modifierID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Build child products
+POST {{baseUrl}}/products/{{productID}}/build 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "product-variation",
+    "name": "Colour"
+  }
+}

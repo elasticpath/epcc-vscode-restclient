@@ -1,0 +1,53 @@
+
+@orderID = orderID
+@transactionID = transactionID
+
+
+### Get order transactions
+GET {{baseUrl}}/orders/{{orderID}}/transactions 
+accept: application/json
+content-type: application/json
+
+
+
+### Get a transaction
+GET {{baseUrl}}/orders/{{orderID}}/transactions/{{transactionID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Capture a transaction
+POST {{baseUrl}}/orders/{{orderID}}/transactions/{{transactionID}}/capture 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "custom_reference": "customRef123"
+  }
+}
+### Refund a transaction
+POST {{baseUrl}}/orders/{{orderID}}/transactions/{{transactionID}}/refund 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "amount": 1
+  }
+}
+### Cancel a pending transaction
+POST {{baseUrl}}/orders/{{orderID}}/transactions/{{transactionID}}/cancel 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "reason": "requested_by_customer",
+    "options": {}
+  }
+}

@@ -1,0 +1,29 @@
+
+@orderID = orderID
+
+### Authorize by token
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "card_connect",
+    "method": "authorize",
+    "payment": "1|14631894265740112494"
+  }
+}
+### Purchase by token
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "card_connect",
+    "method": "purchase",
+    "payment": "1|14631894265740112494"
+  }
+}

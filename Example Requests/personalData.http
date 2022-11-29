@@ -1,0 +1,64 @@
+
+@customerID = customerID
+
+
+### Get related data entries
+GET {{baseUrl}}/personal-data/related-data-entries 
+accept: application/json
+content-type: application/json
+
+
+
+### Get logs
+GET {{baseUrl}}/personal-data/logs 
+accept: application/json
+content-type: application/json
+
+
+
+### Create erasure request
+POST {{baseUrl}}/personal-data/erasure-requests 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "resource_id": "{{customerID}}",
+    "resource_type": "customer",
+    "type": "erasure_request"
+  }
+}
+### Get erasure request
+GET {{baseUrl}}/personal-data/erasure-requests/{erasureRequestID} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get erasure requests
+GET {{baseUrl}}/personal-data/erasure-requests 
+accept: application/json
+content-type: application/json
+
+
+
+### Update TTL
+PUT {{baseUrl}}//settings/logs-ttl 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "time_to_live",
+    "days": 20
+  }
+}
+### Get TTL
+GET {{baseUrl}}//settings/logs-ttl 
+accept: application/json
+content-type: application/json
+
+
+

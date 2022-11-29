@@ -1,0 +1,43 @@
+
+@cartID = cartID
+@cartitemID = cartitemID
+@taxitemID = taxitemID
+
+
+### Add tax item to cart
+POST {{baseUrl}}/carts/{{cartID}}/items/{{cartitemID}}/taxes 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "tax_item",
+    "name": "Tax name",
+    "jurisdiction": "UK",
+    "code": "TAX01",
+    "rate": 0.2
+  }
+}
+### Update a tax item
+PUT {{baseUrl}}/carts/{{cartID}}/items/{{cartitemID}}/taxes/{{taxitemID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "tax_item",
+    "name": "Tax name",
+    "jurisdiction": "UK",
+    "code": "MYTAX01",
+    "rate": 0.2
+  }
+}
+### Delete a tax item
+DELETE {{baseUrl}}/carts/{{cartID}}/items/{{cartitemID}}/taxes/{{taxitemID}} 
+accept: application/json
+content-type: application/json
+
+
+

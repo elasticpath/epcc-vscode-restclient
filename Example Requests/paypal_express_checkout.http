@@ -1,0 +1,94 @@
+
+@orderID = orderID
+@transactionID = transactionID
+
+
+### Setup Authorize
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "paypal_express_checkout",
+    "method": "authorize",
+    "options": {
+      "description": "Test description",
+      "soft_descriptor": "integration test",
+      "application_context": {
+        "brand_name": "TEST brand",
+        "locale": "en-US",
+        "landing_page": "LOGIN",
+        "shipping_preference": "SET_PROVIDED_ADDRESS",
+        "user_action": "PAY_NOW",
+        "return_url": "https://your.frontend.url/return",
+        "cancel_return_url": "https://your.frontend.url/cancel"
+      }
+    }
+  }
+}
+### Setup Purchase
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "paypal_express_checkout",
+    "method": "purchase",
+    "options": {
+      "description": "Test description",
+      "soft_descriptor": "integration test",
+      "application_context": {
+        "brand_name": "TEST brand",
+        "locale": "en-US",
+        "landing_page": "LOGIN",
+        "shipping_preference": "SET_PROVIDED_ADDRESS",
+        "user_action": "PAY_NOW",
+        "return_url": "https://your.frontend.url/return",
+        "cancel_return_url": "https://your.frontend.url/cancel"
+      }
+    }
+  }
+}
+### Confirm Payment
+POST {{baseUrl}}/orders/{{orderID}}/transactions/{{transactionID}}/confirm 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "paypal_express_checkout"
+  }
+}
+### Capture Payment
+POST {{baseUrl}}/orders/{{orderID}}/transactions/{{transactionID}}/capture 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "options": {
+      "soft_descriptor": "Test soft descriptor",
+      "note_to_payer": "Capture note to payer"
+    }
+  }
+}
+### Refund a payment
+POST {{baseUrl}}/orders/{{orderID}}/transactions/{{transactionID}}/refund 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "amount": 1,
+    "options": {
+      "note_to_payer": "Refund note to payer"
+    }
+  }
+}

@@ -1,0 +1,158 @@
+
+@cartID = cartID
+@customerID = customerID
+@accountID = accountID
+@accountMemberID = accountMemberID
+@accountToken = accountToken
+
+
+### Checkout as customer
+POST {{baseUrl}}/carts/{{cartID}}/checkout 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "customer": {
+      "id": "{{customerID}}"
+    },
+    "billing_address": {
+      "first_name": "Ron",
+      "last_name": "Swanson",
+      "company_name": "Ron Swanson Enterprises",
+      "line_1": "1 Sunny Street",
+      "line_2": "",
+      "city": "Sunny Town",
+      "county": "Orange",
+      "region": "CA",
+      "postcode": "92802",
+      "country": "US"
+    },
+    "shipping_address": {
+      "first_name": "Ron",
+      "last_name": "Swanson",
+      "company_name": "Ron Swanson Enterprises",
+      "line_1": "1 Sunny Street",
+      "line_2": "",
+      "city": "Sunny Town",
+      "county": "Orange",
+      "region": "CA",
+      "postcode": "92802",
+      "country": "US"
+    }
+  }
+}
+### Checkout as guest
+POST {{baseUrl}}/carts/{{cartID}}/checkout 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "customer": {
+      "email": "andy@example.com",
+      "name": "Andy Dwyer"
+    },
+    "billing_address": {
+      "first_name": "Andy",
+      "last_name": "Dwyer",
+      "company_name": "Ron Swanson Enterprises",
+      "line_1": "1 Sunny Street",
+      "line_2": "",
+      "county": "Orange",
+      "region": "CA",
+      "postcode": "92802",
+      "country": "US"
+    },
+    "shipping_address": {
+      "first_name": "Andy",
+      "last_name": "Dwyer",
+      "company_name": "Ron Swanson Enterprises",
+      "line_1": "1 Sunny Street",
+      "line_2": "",
+      "county": "Orange",
+      "region": "CA",
+      "postcode": "92802",
+      "country": "US"
+    }
+  }
+}
+### Checkout as account
+POST {{baseUrl}}/carts/{{cartID}}/checkout 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "account": {
+      "id": "{{accountID}}",
+      "member_id": "{{accountMemberID}}"
+    },
+    "contact": {
+      "name": "John Doe",
+      "email": "johndoe@email.com"
+    },
+    "billing_address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company_name": "John Doe Enterprises",
+      "line_1": "1 Sunny Street",
+      "line_2": "",
+      "county": "Orange",
+      "region": "CA",
+      "postcode": "92802",
+      "country": "US"
+    },
+    "shipping_address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company_name": "John Doe Enterprises",
+      "line_1": "1 Sunny Street",
+      "line_2": "",
+      "county": "Orange",
+      "region": "CA",
+      "postcode": "92802",
+      "country": "US"
+    }
+  }
+}
+### Checkout with account management authentication token
+POST {{baseUrl}}/carts/{{cartID}}/checkout 
+accept: application/json
+content-type: application/json
+
+EP-Account-Management-Authentication-Token: {{accountToken}}
+
+{
+  "data": {
+    "contact": {
+      "name": "John Doe",
+      "email": "johndoe@email.com"
+    },
+    "billing_address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company_name": "John Doe Enterprises",
+      "line_1": "1 Sunny Street",
+      "line_2": "",
+      "county": "Orange",
+      "region": "CA",
+      "postcode": "92802",
+      "country": "US"
+    },
+    "shipping_address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company_name": "John Doe Enterprises",
+      "line_1": "1 Sunny Street",
+      "line_2": "",
+      "county": "Orange",
+      "region": "CA",
+      "postcode": "92802",
+      "country": "US"
+    }
+  }
+}

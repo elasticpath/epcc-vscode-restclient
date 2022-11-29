@@ -1,0 +1,33 @@
+
+@jobId = jobId
+
+
+### Get all jobs
+GET {{baseUrl}}/jobs 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get a job
+GET {{baseUrl}}/jobs/{{jobId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a job
+POST {{baseUrl}}/jobs 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "job",
+    "job_type": "order_export",
+    "filter": "gt(created_at,2020-04-28):lt(created_at,2020-04-30):eq(payment,paid)"
+  }
+}

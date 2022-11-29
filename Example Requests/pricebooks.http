@@ -1,0 +1,124 @@
+
+@pricebookId = pricebookId
+@priceId = priceId
+@productSku = productSku
+
+
+### Get all pricebooks
+GET {{pcmUrl}}/pricebooks 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get a pricebook
+GET {{pcmUrl}}/pricebooks/{{pricebookId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a pricebook
+POST {{pcmUrl}}/pricebooks 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "pricebook",
+    "attributes": {
+      "name": "Standard Pricebook",
+      "description": "This is a test price book"
+    }
+  }
+}
+### Update a pricebook
+PUT {{pcmUrl}}/pricebooks/{{pricebookId}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{pricebookId}}",
+    "type": "pricebook",
+    "attributes": {
+      "name": "Seasonal Sales Pricebook",
+      "description": "This is a test price book"
+    }
+  }
+}
+### Delete a pricebook
+DELETE {{pcmUrl}}/pricebooks/{{pricebookId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all product prices
+GET {{pcmUrl}}/pricebooks/{{pricebookId}}/prices 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get a product price by id
+GET {{pcmUrl}}/pricebooks/{{pricebookId}}/prices/{{priceId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a price
+POST {{pcmUrl}}/pricebooks/{{pricebookId}}/prices 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "product-price",
+    "attributes": {
+      "sku": "{{productSku}}",
+      "currencies": {
+        "USD": {
+          "amount": 100,
+          "includes_tax": false
+        }
+      }
+    }
+  }
+}
+### Update a product price
+PUT {{pcmUrl}}/pricebooks/{{pricebookId}}/prices/{{priceId}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{priceId}}",
+    "type": "product-price",
+    "attributes": {
+      "sku": "{{productSku}}",
+      "currencies": {
+        "USD": {
+          "amount": 300,
+          "includes_tax": false
+        }
+      }
+    }
+  }
+}
+### Delete a product price
+DELETE {{pcmUrl}}/pricebooks/{{pricebookId}}/prices/{{priceId}} 
+accept: application/json
+content-type: application/json
+
+
+

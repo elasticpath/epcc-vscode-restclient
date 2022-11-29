@@ -1,0 +1,65 @@
+
+@promotionID = promotionID
+
+
+### Get promotion codes
+GET {{baseUrl}}/promotions/{{promotionID}}/codes 
+accept: application/json
+content-type: application/json
+
+
+
+### Create promotion codes
+POST {{baseUrl}}/promotions/{{promotionID}}/codes 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "promotion_codes",
+    "codes": [
+      {
+        "code": "ABCXYZ"
+      },
+      {
+        "code": "ABC",
+        "user": "{customerID}",
+        "uses": 10
+      },
+      {
+        "code": "5uses",
+        "uses": 5,
+        "consume_unit": "per_item"
+      }
+    ]
+  }
+}
+### Delete a promotion code
+DELETE {{baseUrl}}/promotions/{{promotionID}}/codes/{code} 
+accept: application/json
+content-type: application/json
+
+
+
+### Delete multiple promotion codes
+DELETE {{baseUrl}}/promotions/{{promotionID}}/codes 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "promotion_codes",
+    "codes": [
+      {
+        "code": "ABCXYZ"
+      },
+      {
+        "code": "ABC",
+        "user": "{customerID}",
+        "uses": 10
+      }
+    ]
+  }
+}

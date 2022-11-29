@@ -1,0 +1,49 @@
+
+@catalogId = catalogId
+@releaseId = releaseId
+
+
+### Get all releases
+GET {{pcmUrl}}/catalogs/{{catalogId}}/releases 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get release by id
+GET {{pcmUrl}}/catalogs/{{catalogId}}/releases/{{releaseId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create release (publish)
+POST {{pcmUrl}}/catalogs/{{catalogId}}/releases 
+accept: application/json
+content-type: application/json
+
+
+
+### Delete all releases of a catalog
+DELETE {{pcmUrl}}/catalogs/{{catalogId}}/releases 
+accept: application/json
+content-type: application/json
+
+
+
+### Delete a release of catalog
+DELETE {{pcmUrl}}/catalogs/{{catalogId}}/releases/{{releaseId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Delete latest release of a catalog (rollback)
+DELETE {{pcmUrl}}/catalogs/{{catalogId}}/releases/latest 
+accept: application/json
+content-type: application/json
+
+
+

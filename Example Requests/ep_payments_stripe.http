@@ -1,0 +1,54 @@
+
+@orderID = orderID
+@transactionID = transactionID
+
+
+### Authorize by token
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "elastic_path_payments_stripe",
+    "method": "authorize",
+    "payment": "pm_card_visa",
+    "options": {
+      "return_url": "https://your.frontend.url/return",
+      "receipt_email": "john@example.com"
+    }
+  }
+}
+### Purchase by token
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "elastic_path_payments_stripe",
+    "method": "purchase",
+    "payment": "pm_card_visa",
+    "options": {
+      "return_url": "https://your.frontend.url/return",
+      "receipt_email": "john@example.com"
+    }
+  }
+}
+### Confirm Payment
+POST {{baseUrl}}/orders/{{orderID}}/transactions/{{transactionID}}/confirm 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "elastic_path_payments_stripe",
+    "options": {
+      "return_url": "https://your.frontend.url/return",
+      "receipt_email": "john@example.com"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+
+@authenticationRealmId = authenticationRealmId
+@oidcProfileId = oidcProfileId
+@oidcDiscoveryUrl = oidcDiscoveryUrl
+@oidcClientId = oidcClientId
+@oidcClientSecret = oidcClientSecret
+
+
+### Get OIDC profiles
+GET {{baseUrl}}/authentication-realms/{{authenticationRealmId}}/oidc-profiles/ 
+accept: application/json
+content-type: application/json
+
+
+
+### Get OIDC profile
+GET {{baseUrl}}/authentication-realms/{{authenticationRealmId}}/oidc-profiles/{{oidcProfileId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create OIDC profile
+POST {{baseUrl}}/authentication-realms/{{authenticationRealmId}}/oidc-profiles/ 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "name": "Identity provider",
+    "type": "oidc-profile",
+    "discovery_url": "{{oidcDiscoveryUrl}}",
+    "client_id": "{{oidcClientId}}",
+    "client_secret": "{{oidcClientSecret}}"
+  }
+}
+### Update OIDC profile
+PUT {{baseUrl}}/authentication-realms/{{authenticationRealmId}}/oidc-profiles/{{oidcProfileId}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "name": "Identity provider",
+    "type": "oidc-profile",
+    "discovery_url": "{{oidcDiscoveryUrl}}",
+    "client_id": "{{oidcClientId}}",
+    "client_secret": "{{oidcClientSecret}}"
+  }
+}
+### Delete OIDC profile
+DELETE {{baseUrl}}/authentication-realms/{{authenticationRealmId}}/oidc-profiles/{{oidcProfileId}} 
+accept: application/json
+content-type: application/json
+
+
+

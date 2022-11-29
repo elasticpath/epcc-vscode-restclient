@@ -1,0 +1,160 @@
+
+@variationId = variationId
+@optionId = optionId
+@modifierId = modifierId
+
+
+### Create a variation
+POST {{pcmUrl}}/variations 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "product-variation",
+    "attributes": {
+      "name": "Size"
+    }
+  }
+}
+### Get all variations
+GET {{pcmUrl}}/variations 
+accept: application/json
+content-type: application/json
+
+
+
+### Update a variation
+PUT {{pcmUrl}}/variations/{{variationId}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{variationId}}",
+    "type": "product-variation",
+    "attributes": {
+      "name": "Color"
+    }
+  }
+}
+### Get a variation
+GET {{pcmUrl}}/variations/{{variationId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Delete a variation
+DELETE {{pcmUrl}}/variations/{{variationId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all Options for a Variation
+GET {{pcmUrl}}/variations/{{variationId}}/options 
+accept: application/json
+content-type: application/json
+
+
+
+### Create an Option for a Variation
+POST {{pcmUrl}}/variations/{{variationId}}/options 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "product-variation-option",
+    "attributes": {
+      "name": "Small",
+      "description": "Products with a small size"
+    }
+  }
+}
+### Get an Option for a Variation
+GET {{pcmUrl}}/variations/{{variationId}}/options/{{optionId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Update an Option for a Variation
+PUT {{pcmUrl}}/variations/{{variationId}}/options/{{optionId}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{optionId}}",
+    "type": "product-variation-option",
+    "attributes": {
+      "name": "Large",
+      "description": "Products with a large size"
+    }
+  }
+}
+### Delete an Option for a Variation
+DELETE {{pcmUrl}}/variations/{{variationId}}/options/{{optionId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a Modifier for an Option
+POST {{pcmUrl}}/variations/{{variationId}}/options/{{optionId}}/modifiers 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "product-variation-modifier",
+    "attributes": {
+      "type": "name_prepend",
+      "value": "Child Product "
+    }
+  }
+}
+### Get all Modifiers for an Option
+GET {{pcmUrl}}/variations/{{variationId}}/options/{{optionId}}/modifiers 
+accept: application/json
+content-type: application/json
+
+
+
+### Get a Modifier for an Option
+GET {{pcmUrl}}/variations/{{variationId}}/options/{{optionId}}/modifiers/{{modifierId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Update a Modifier for an Option
+PUT {{pcmUrl}}/variations/{{variationId}}/options/{{optionId}}/modifiers/{{modifierId}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{modifierId}}",
+    "type": "product-variation-modifier",
+    "attributes": {
+      "type": "name_append",
+      "value": " - A Child Product"
+    }
+  }
+}
+### Delete a Modifier for an Option
+DELETE {{pcmUrl}}/variations/{{variationId}}/options/{{optionId}}/modifiers/{{modifierId}} 
+accept: application/json
+content-type: application/json
+
+
+

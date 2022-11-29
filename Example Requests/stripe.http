@@ -1,0 +1,30 @@
+
+@orderID = orderID
+
+
+### Authorize by token
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "stripe",
+    "method": "authorize",
+    "payment": "tok_visa"
+  }
+}
+### Purchase by token
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "stripe",
+    "method": "purchase",
+    "payment": "tok_visa"
+  }
+}

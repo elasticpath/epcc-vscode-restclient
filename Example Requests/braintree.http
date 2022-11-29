@@ -1,0 +1,92 @@
+@orderID = orderID
+
+### Authorize by customerID
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "braintree",
+    "method": "authorize",
+    "payment": "<braintreeSandboxcustomerID>"
+  }
+}
+### Authorize by token
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "braintree",
+    "method": "authorize",
+    "payment": "<braintreePaymentToken>",
+    "options": {
+      "payment_method_token": true
+    }
+  }
+}
+### Authorize by nonce
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "braintree",
+    "method": "authorize",
+    "payment": "fake-valid-nonce",
+    "options": {
+      "payment_method_nonce": true
+    }
+  }
+}
+### Purchase by customerID
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "braintree",
+    "method": "purchase",
+    "payment": "<braintreeSandboxcustomerID>"
+  }
+}
+### Purchase by nonce
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "braintree",
+    "method": "purchase",
+    "payment": "fake-valid-nonce",
+    "options": {
+      "payment_method_nonce": true
+    }
+  }
+}
+### Purchase by token
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "braintree",
+    "method": "purchase",
+    "payment": "<braintreePaymentToken>",
+    "options": {
+      "payment_method_token": true
+    }
+  }
+}

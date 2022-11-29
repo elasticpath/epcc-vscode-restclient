@@ -1,0 +1,42 @@
+
+@authenticationRealmId = authenticationRealmId
+@storeId = storeId
+
+
+### Get authentication realms
+GET {{baseUrl}}/authentication-realms 
+accept: application/json
+content-type: application/json
+
+
+
+### Get authentication realm
+GET {{baseUrl}}/authentication-realms/{{authenticationRealmId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Update authentication realms
+PUT {{baseUrl}}/authentication-realms/{{authenticationRealmId}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "authentication-realm",
+    "name": "Test Authentication Realm",
+    "redirect_uris": [
+      "https://example.com"
+    ],
+    "relationships": {
+      "origin": {
+        "data": {
+          "id": "{{storeId}}",
+          "type": "customer-authentication-settings"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+    "rest-client.environmentVariables": {
+      "$shared": {
+        "baseUrl": "https://useast.api.elasticpath.com/v2",
+        "authUrl": "https://useast.api.elasticpath.com",
+        "pcmUrl": "https://useast.api.elasticpath.com/pcm"
+      },
+      "YOUR-STORE": {
+        "host": "{{$shared host}}",
+        "auth_url": "{{$shared auth_url}}",
+        "storeID": "storeID",
+        "clientID": "clientID",
+        "clientSecret": "clientSecret"
+      }
+    }
+  }

@@ -1,0 +1,20 @@
+### Get client credentials token
+# @name clientCredentialsToken
+POST {{authUrl}}/oauth/access_token 
+accept: application/json
+content-type: text/plain
+
+client_id={{clientID}}&client_secret={{clientSecret}}&grant_type=client_credentials
+
+
+### Get all products
+# @token = {{$dotenv access_token}}
+# @token = {{access_token}}
+@token = {{clientCredentialsToken.response.body.access_token}}
+
+GET {{baseUrl}}/products
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+Authorization: {{token}}

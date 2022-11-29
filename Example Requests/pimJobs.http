@@ -1,0 +1,27 @@
+
+@pimJobId = pimJobId
+
+
+### Get all Jobs for PIM
+GET {{pcmUrl}}/jobs 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get a Job for PIM via its ID
+GET {{pcmUrl}}/jobs/{{pimJobId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all Errors for a Job in PIM via its ID
+GET {{pcmUrl}}/jobs/{{pimJobId}}/errors 
+accept: application/json
+content-type: application/json
+
+
+

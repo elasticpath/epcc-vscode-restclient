@@ -1,0 +1,107 @@
+
+@catalogId = catalogId
+@hierarchyId = hierarchyId
+@nodeId = nodeId
+@productId = productId
+
+
+### Get latest release
+GET {{pcmUrl}}/catalogs/{{catalogId}}/releases/latest 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all hierarchies
+GET {{pcmUrl}}/catalogs/{{catalogId}}/releases/latest/hierarchies 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get hierarchy by id
+GET {{pcmUrl}}/catalogs/{{catalogId}}/releases/latest/hierarchies/{{hierarchyId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get hierarchy's child nodes
+GET {{pcmUrl}}/catalogs/{{catalogId}}/releases/latest/hierarchies/{{hierarchyId}}/children 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get hierarchy's nodes
+GET {{pcmUrl}}/catalogs/{{catalogId}}/releases/latest/hierarchies/{{hierarchyId}}/nodes 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get all nodes
+GET {{pcmUrl}}/catalogs/{{catalogId}}/releases/latest/nodes 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get node by id
+GET {{pcmUrl}}/catalogs/{{catalogId}}/releases/latest/nodes/{{nodeId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get node's child nodes
+GET {{pcmUrl}}/catalogs/{{catalogId}}/releases/latest/nodes/{{nodeId}}/relationships/children 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get all products
+GET {{pcmUrl}}/catalogs/{{catalogId}}/releases/latest/products 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get product by id
+GET {{pcmUrl}}/catalogs/{{catalogId}}/releases/latest/products/{{productId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get a hierarchy's products
+GET {{pcmUrl}}/catalogs/{{catalogId}}/releases/latest/hierarchies/{{hierarchyId}}/products 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get a node's products
+GET {{pcmUrl}}/catalogs/{{catalogId}}/releases/latest/nodes/{{nodeId}}/relationships/products 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+

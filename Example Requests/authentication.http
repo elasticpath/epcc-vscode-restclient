@@ -1,0 +1,15 @@
+### Get client credentials token
+POST {{authUrl}}/oauth/access_token 
+accept: application/json
+content-type:  application/x-www-form-urlencoded
+content-type: text/plain
+
+client_id={{clientID}}&client_secret={{clientSecret}}&grant_type=client_credentials
+
+### Get implicit token
+POST {{authUrl}}/oauth/access_token 
+accept: application/json
+content-type: application/json
+content-type: text/plain
+
+client_id={{clientID}}&grant_type=implicit

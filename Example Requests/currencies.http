@@ -1,0 +1,64 @@
+
+@currencyID = currencyID
+
+
+### Get currency attributes
+GET {{baseUrl}}/currencies/attributes 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all currencies
+GET {{baseUrl}}/currencies 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get a currency
+GET {{baseUrl}}/currencies/{{currencyID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a currency
+POST {{baseUrl}}/currencies 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "currency",
+    "code": "GBP",
+    "exchange_rate": 1,
+    "format": "£{price}",
+    "decimal_point": ".",
+    "thousand_separator": ",",
+    "decimal_places": 2,
+    "default": true,
+    "enabled": true
+  }
+}
+### Update a currency
+PUT {{baseUrl}}/currencies/{{currencyID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "default": true
+  }
+}
+### Delete a currency
+DELETE {{baseUrl}}/currencies/{{currencyID}} 
+accept: application/json
+content-type: application/json
+
+
+

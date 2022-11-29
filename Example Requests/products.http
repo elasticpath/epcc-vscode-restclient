@@ -1,0 +1,269 @@
+@productId = productId
+@bundleId = bundleId
+@variationId = variationId
+
+
+### Get all products
+GET {{pcmUrl}}/products 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get a product by id
+GET {{pcmUrl}}/products/{{productId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a product
+POST {{pcmUrl}}/products 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "product",
+    "attributes": {
+      "name": "Playtend Gaming Headset",
+      "slug": "PGH69345",
+      "sku": "PGH69345",
+      "description": "Playtend brand gaming headset",
+      "status": "live",
+      "commodity_type": "physical",
+      "mpn": "1234-5678-ABCD",
+      "upc_ean": "123456"
+    }
+  }
+}
+### Update a product
+PUT {{pcmUrl}}/products/{{productId}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "product",
+    "id": "{{productId}}",
+    "attributes": {
+      "name": "Playtend Gaming Headset",
+      "slug": "PGH69345",
+      "sku": "PGH69345",
+      "description": "Playtend brand top of the line gaming headset",
+      "status": "live",
+      "commodity_type": "physical",
+      "mpn": "9934-5678-ABCD",
+      "upc_ean": "125656"
+    }
+  }
+}
+### Delete a product
+DELETE {{pcmUrl}}/products/{{productId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a bundle
+POST {{pcmUrl}}/products 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "product",
+    "attributes": {
+      "name": "Gaming Headset Bundle",
+      "slug": "PGH69345-B",
+      "description": "2 x Playtend brand gaming headset",
+      "status": "live",
+      "commodity_type": "physical",
+      "components": {
+        "headsets": {
+          "name": "Headsets",
+          "options": [
+            {
+              "id": "{{productId}}",
+              "type": "product",
+              "quantity": 2
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+### Update a bundle
+PUT {{pcmUrl}}/products/{{bundleId}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{bundleId}}",
+    "type": "product",
+    "attributes": {
+      "name": "Gaming Headset Bundle",
+      "slug": "PGH69345-B",
+      "description": "5 x Playtend brand gaming headset",
+      "status": "live",
+      "commodity_type": "physical",
+      "components": {
+        "headsets": {
+          "name": "Headsets",
+          "options": [
+            {
+              "id": "{{productId}}",
+              "type": "product",
+              "quantity": 5
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+### Delete a bundle
+DELETE {{pcmUrl}}/products/{{bundleId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get a product's nodes
+GET {{pcmUrl}}/products/{{productId}}/nodes 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get a product's file relationships
+GET {{pcmUrl}}/products/{{productId}}/relationships/files 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Create product file relationships
+POST {{pcmUrl}}/products/{{productId}}/relationships/files 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "type": "file",
+      "id": "file-1"
+    },
+    {
+      "type": "file",
+      "id": "file-2"
+    }
+  ]
+}
+### Replace a products's file relationships
+PUT {{pcmUrl}}/products/{{productId}}/relationships/files 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "type": "file",
+      "id": "file-3"
+    },
+    {
+      "type": "file",
+      "id": "file-4"
+    }
+  ]
+}
+### Delete a product's file relationships
+DELETE {{pcmUrl}}/products/{{productId}}/relationships/files 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "type": "file",
+      "id": "file-3"
+    },
+    {
+      "type": "file",
+      "id": "file-4"
+    }
+  ]
+}
+### Get a product's variation relationships
+GET {{pcmUrl}}/products/{{productId}}/relationships/variations 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Create product variation relationships
+POST {{pcmUrl}}/products/{{productId}}/relationships/variations 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "type": "product-variation",
+      "id": "{{variationId}}"
+    }
+  ]
+}
+### Replace a products's variations relationships
+PUT {{pcmUrl}}/products/{{productId}}/relationships/variations 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "type": "product-variation",
+      "id": "{{variationId}}"
+    }
+  ]
+}
+### Delete a product's variation relationships
+DELETE {{pcmUrl}}/products/{{productId}}/relationships/variations 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "type": "product-variation",
+      "id": "{{variationId}}"
+    }
+  ]
+}
+### Builds child products
+POST {{pcmUrl}}/products/{{productId}}/build 
+accept: application/json
+content-type: application/json
+
+
+

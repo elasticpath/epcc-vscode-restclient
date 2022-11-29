@@ -1,0 +1,156 @@
+
+@hierarchyId = hierarchyId
+@nodeId = nodeId
+@productId = productId
+
+
+### Get a node by id
+GET {{pcmUrl}}/hierarchies/{{hierarchyId}}/nodes/{{nodeId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a node
+POST {{pcmUrl}}/hierarchies/{{hierarchyId}}/nodes 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "node",
+    "attributes": {
+      "name": "Accessories",
+      "description": "Game accessories",
+      "slug": "accessories"
+    }
+  }
+}
+### Create a node under parent
+POST {{pcmUrl}}/hierarchies/{{hierarchyId}}/nodes 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "node",
+    "attributes": {
+      "name": "Gaming Keyboards",
+      "description": "Gaming Keyboards",
+      "slug": "gaming-keyboards"
+    },
+    "relationships": {
+      "parent": {
+        "data": {
+          "id": "{{nodeId}}",
+          "type": "node"
+        }
+      }
+    }
+  }
+}
+### Update a node
+PUT {{pcmUrl}}/hierarchies/{{hierarchyId}}/nodes/{{nodeId}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{nodeId}}",
+    "type": "node",
+    "attributes": {
+      "name": "Gaming Keyboards",
+      "description": "Gaming keyboards for the dedicated player",
+      "slug": "gaming-keyboards"
+    }
+  }
+}
+### Delete a node
+DELETE {{pcmUrl}}/hierarchies/{{hierarchyId}}/nodes/{{nodeId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get a node's child nodes
+GET {{pcmUrl}}/hierarchies/{{hierarchyId}}/nodes/{{nodeId}}/children 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Create child node relationships
+POST {{pcmUrl}}/hierarchies/{{hierarchyId}}/nodes/{{nodeId}}/relationships/children 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "type": "node",
+      "id": "{{nodeId}}"
+    }
+  ]
+}
+### Update a node's parent
+PUT {{pcmUrl}}/hierarchies/{{hierarchyId}}/nodes/{{nodeId}}/relationships/parent 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "node",
+    "id": "{{nodeId}}"
+  }
+}
+### Delete a node's parent relationship
+DELETE {{pcmUrl}}/hierarchies/{{hierarchyId}}/nodes/{{nodeId}}/relationships/parent 
+accept: application/json
+content-type: application/json
+
+
+
+### Get a node's products
+GET {{pcmUrl}}/hierarchies/{{hierarchyId}}/nodes/{{nodeId}}/products 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Create relationships to products
+POST {{pcmUrl}}/hierarchies/{{hierarchyId}}/nodes/{{nodeId}}/relationships/products 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "type": "product",
+      "id": "{{productId}}"
+    }
+  ]
+}
+### Delete relationships to products
+DELETE {{pcmUrl}}/hierarchies/{{hierarchyId}}/nodes/{{nodeId}}/relationships/products 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "type": "product",
+      "id": "{{productId}}"
+    }
+  ]
+}

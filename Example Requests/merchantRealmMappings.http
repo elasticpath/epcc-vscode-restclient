@@ -1,0 +1,39 @@
+
+@merchantMappingId = merchantMappingId
+@merchantStorePrefix = merchantStorePrefix
+
+
+### Get merchant realm mapping
+GET {{baseUrl}}/merchant-realm-mappings 
+accept: application/json
+content-type: application/json
+
+
+
+### Get merchant realm mapping by id
+GET {{baseUrl}}/merchant-realm-mappings/{{merchantMappingId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Update merchant realm mapping's store prefix
+PUT {{baseUrl}}/merchant-realm-mappings/{{merchantMappingId}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "merchant-realm-mappings",
+    "prefix": "myNewStorePrefix"
+  }
+}
+### Get merchant oauth2 profiles
+GET {{authUrl}}//merchant-oauth2-profiles 
+	?prefix={{merchantStorePrefix}}
+accept: application/json
+content-type: application/json
+
+
+

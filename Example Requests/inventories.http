@@ -1,0 +1,66 @@
+
+@productID = productID
+@transactionID = transactionID
+
+
+### Get all inventories
+GET {{baseUrl}}/inventories 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get product inventory
+GET {{baseUrl}}/inventories/{{productID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get product stock transactions
+GET {{baseUrl}}/inventories/{{productID}}/transactions 
+accept: application/json
+content-type: application/json
+
+
+
+### Get a product stock transaction
+GET {{baseUrl}}/inventories/{{productID}}/transactions/{{transactionID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a stock transaction
+POST {{baseUrl}}/inventories/{{productID}}/transactions 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "stock-transaction",
+    "action": "increment",
+    "quantity": 3
+  }
+}
+### Create inventory
+POST {{baseUrl}}/inventories/{{productID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "quantity": 1000
+  }
+}
+### Delete inventory
+DELETE {{baseUrl}}/inventories/{{productID}} 
+accept: application/json
+content-type: application/json
+
+
+

@@ -1,0 +1,94 @@
+
+@orderID = orderID
+@customerToken = customerToken
+
+
+### Get order attributes
+GET {{baseUrl}}/orders/attributes 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all orders
+GET {{baseUrl}}/orders 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get an order
+GET {{baseUrl}}/orders/{{orderID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Update an order shipping address
+PUT {{baseUrl}}/orders/{{orderID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "order",
+    "shipping_address": {
+      "first_name": "Ron"
+    }
+  }
+}
+### Fulfill an order
+PUT {{baseUrl}}/orders/{{orderID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "order",
+    "shipping": "fulfilled"
+  }
+}
+### Cancel an order
+PUT {{baseUrl}}/orders/{{orderID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "order",
+    "status": "cancelled"
+  }
+}
+### Get customer orders
+GET {{baseUrl}}/orders 
+accept: application/json
+content-type: application/json
+
+x-moltin-customer-token: {{customerToken}}
+
+
+### Get order items
+GET {{baseUrl}}/orders/{{orderID}}/items 
+accept: application/json
+content-type: application/json
+
+
+
+### Anonymize orders
+POST {{baseUrl}}/orders/anonymize 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "order_ids": [
+      "{{orderID}}"
+    ]
+  }
+}

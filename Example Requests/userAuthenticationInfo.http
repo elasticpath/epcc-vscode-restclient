@@ -1,0 +1,52 @@
+
+@authenticationRealmId = authenticationRealmId
+@userAuthenticationInfoId = userAuthenticationInfoId
+
+
+### Get all user authentication info
+GET {{baseUrl}}/authentication-realms/{{authenticationRealmId}}/user-authentication-info/ 
+accept: application/json
+content-type: application/json
+
+
+
+### Get user authentication info
+GET {{baseUrl}}/authentication-realms/{{authenticationRealmId}}/user-authentication-info/{{userAuthenticationInfoId}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create user authentication info
+POST {{baseUrl}}/authentication-realms/{{authenticationRealmId}}/user-authentication-info/ 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "user_authentication_info",
+    "name": "John Doe",
+    "email": "john.doe@banks.com"
+  }
+}
+### Update user authentication info
+PUT {{baseUrl}}/authentication-realms/{{authenticationRealmId}}/user-authentication-info/{{userAuthenticationInfoId}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "user_authentication_info",
+    "name": "John Doe Updated",
+    "email": "john.doe@banks.com"
+  }
+}
+### Delete user authentication info
+DELETE {{baseUrl}}/authentication-realms/{{authenticationRealmId}}/user-authentication-info/{{userAuthenticationInfoId}} 
+accept: application/json
+content-type: application/json
+
+
+

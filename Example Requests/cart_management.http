@@ -1,0 +1,43 @@
+
+@customerToken = customerToken
+@cartID = cartID
+
+
+### Create a custom cart
+POST {{baseUrl}}/carts 
+accept: application/json
+content-type: application/json
+x-moltin-customer-token: {{customerToken}}
+
+{
+  "data": {
+    "name": "my cart name",
+    "description": "cart description"
+  }
+}
+### Get a cart
+GET {{baseUrl}}/carts/{{cartID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Update a cart
+PUT {{baseUrl}}/carts/{{cartID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "name": "my cart name",
+    "description": "cart description"
+  }
+}
+### Delete a cart
+DELETE {{baseUrl}}/carts/{{cartID}} 
+accept: application/json
+content-type: application/json
+
+
+

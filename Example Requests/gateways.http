@@ -1,0 +1,129 @@
+
+@gatewaySlug = gatewaySlug
+@braintreeMerchantId = braintreeMerchantId
+@braintreePublicKey = braintreePublicKey
+@braintreePrivateKey = braintreePrivateKey
+@stripeToken = stripeToken
+@stripeConnectAccountId = stripeConnectAccountId
+
+
+### Get all gateways
+GET {{baseUrl}}/gateways 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get a gateway
+GET {{baseUrl}}/gateways/{{gatewaySlug}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Update Manual gateway
+PUT {{baseUrl}}/gateways/manual 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "enabled": true
+  }
+}
+### Update Braintree gateway
+PUT {{baseUrl}}/gateways/braintree 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "enabled": true,
+    "environment": "sandbox",
+    "merchant_id": "{{braintreeMerchantId}}",
+    "public_key": "{{braintreePublicKey}}",
+    "private_key": "{{braintreePrivateKey}}"
+  }
+}
+### Update Stripe gateway
+PUT {{baseUrl}}/gateways/stripe 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "enabled": true,
+    "login": "{{stripeToken}}"
+  }
+}
+### Update Stripe Intents gateway
+PUT {{baseUrl}}/gateways/stripe_payment_intents 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "enabled": true,
+    "login": "{{stripeToken}}"
+  }
+}
+### Update Stripe Connect gateway
+PUT {{baseUrl}}/gateways/stripe_connect 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "enabled": true,
+    "stripe_account": "{{stripeConnectAccountId}}",
+    "test": true
+  }
+}
+### Update Braintree gateway
+PUT {{baseUrl}}/gateways/braintree 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "enabled": true,
+    "environment": "sandbox",
+    "merchant_id": "{{braintreeMerchantId}}",
+    "public_key": "{{braintreePublicKey}}",
+    "private_key": "{{braintreePrivateKey}}"
+  }
+}
+### Update PayPal Express Checkout gateway
+PUT {{baseUrl}}/gateways/paypal_express_checkout 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "payer_id": "{{merchant account id}}",
+    "enabled": true,
+    "test": true
+  }
+}
+### Update EP payments Stripe
+PUT {{baseUrl}}/gateways/elastic_path_payments_stripe 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "enabled": true,
+    "stripe_account": "{{stripeConnectAccountId}}",
+    "test": true
+  }
+}

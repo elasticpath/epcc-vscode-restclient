@@ -1,0 +1,68 @@
+@accountID = accountID
+@accountAddressId = accountAddressID
+
+### Get account addresses
+GET {{baseUrl}}/accounts/{{accountID}}/addresses 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-management
+
+
+### Get account address
+GET {{baseUrl}}/accounts/{{accountID}}/addresses/{{accountAddressId}} 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-management
+
+
+### Create an address
+POST {{baseUrl}}/accounts/{{accountID}}/addresses 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-management
+
+{
+  "data": {
+    "type": "address",
+    "first_name": "Ron",
+    "last_name": "Swanson",
+    "name": "Home",
+    "phone_number": "(555) 555-1234",
+    "instructions": "Leave behind bin",
+    "company_name": "Ron Swanson Enterprises",
+    "line_1": "1 Sunny Street",
+    "line_2": "",
+    "city": "Sunny Town",
+    "county": "Sunnyville",
+    "postcode": "SU33 1YY",
+    "country": "GB"
+  }
+}
+### Update an address
+PUT {{baseUrl}}/accounts/{{accountID}}/addresses/{{accountAddressId}} 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-management
+
+{
+  "data": {
+    "id": "{{accountAddressId}}",
+    "type": "address",
+    "name": "Home",
+    "first_name": "Ron",
+    "last_name": "Swanson",
+    "line_1": "1 Sunny Street",
+    "county": "Sunnyville",
+    "postcode": "SU33 1YY",
+    "country": "GB"
+  }
+}
+### Delete an address
+DELETE {{baseUrl}}/accounts/{{accountID}}/addresses/{{accountAddressId}} 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-management
+
+

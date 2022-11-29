@@ -1,0 +1,183 @@
+@accountID = accountID
+@accountMemberID = accountMemberID
+@accountMembershipID = accountMembershipID
+@passwordProfileId = passwordProfileId
+@accountToken = accountToken
+
+### Get account authentication settings
+GET {{baseUrl}}/settings/account-authentication 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+
+
+### Get all accounts
+GET {{baseUrl}}/accounts 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+
+
+### Get an account
+GET {{baseUrl}}/accounts/{{accountID}} 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+
+
+### Create an account
+POST {{baseUrl}}/accounts 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+
+{
+  "data": {
+    "type": "account",
+    "name": "Bluefuse",
+    "legal_name": "Bluefuse Ltd.",
+    "registration_id": "{{$guid}}"
+  }
+}
+### Create a sub account
+POST {{baseUrl}}/accounts 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+
+{
+  "data": {
+    "type": "account",
+    "name": "Bluefuse Canada",
+    "legal_name": "Bluefuse Canada",
+    "registration_id": "{{$guid}}",
+    "parent_id": "{{accountID}}"
+  }
+}
+### Update an account
+PUT {{baseUrl}}/accounts/{{accountID}} 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+
+{
+  "data": {
+    "type": "account",
+    "name": "Bluefuse Updated"
+  }
+}
+### Delete an account
+DELETE {{baseUrl}}/accounts/{{accountID}} 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+
+
+### Get all account members
+GET {{baseUrl}}/account-members 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+
+
+### Get all unassigned account members
+GET {{baseUrl}}/accounts/{{accountID}}/account-memberships/unassigned-account-members 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-management
+
+
+### Get an account member
+GET {{baseUrl}}/account-members/{{accountMemberID}} 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+
+
+### Get all account memberships
+GET {{baseUrl}}/accounts/{{accountID}}/account-memberships 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+
+
+### Get an account membership
+GET {{baseUrl}}/accounts/{{accountID}}/account-memberships/{{accountMembershipID}} 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+
+
+### Create an account membership
+POST {{baseUrl}}/accounts/{{accountID}}/account-memberships 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+{
+  "data": {
+    "type": "account_membership",
+    "account_member_id": "{{accountMemberID}}"
+  }
+}
+
+
+### Delete an account membership
+DELETE {{baseUrl}}/accounts/{{accountID}}/account-memberships/{{accountMembershipID}} 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+
+
+### Generate account tokens using OpenID Connect
+POST {{baseUrl}}/account-members/tokens 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+
+{
+  "data": {
+    "type": "account_management_authentication_token",
+    "authentication_mechanism": "oidc",
+    "oauth_authorization_code": "auth_code",
+    "oauth_redirect_uri": "redirect_uri",
+    "oauth_code_verifier": "pkce_code_verifier"
+  }
+}
+
+
+### Generate account tokens using Username and Password
+POST {{baseUrl}}/account-members/tokens 
+accept: application/json
+content-type: application/json
+EP-Beta-Features: account-authentication-settings, account-management
+
+{
+  "data": {
+    "type": "account_management_authentication_token",
+    "authentication_mechanism": "password",
+    "password_profile_id": "{{passwordProfileId}}",
+    "username": "john.doe",
+    "password": "password"
+  }
+}
+
+
+### Switch account tokens
+POST {{baseUrl}}/account-members/tokens 
+accept: application/json
+content-type: application/json
+EP-Account-Management-Authentication-Token: {{accountToken}}
+EP-Beta-Features: account-authentication-settings, account-management
+
+{
+  "data": {
+    "type": "account_management_authentication_token",
+    "authentication_mechanism": "account_management_authentication_token"
+  }
+}

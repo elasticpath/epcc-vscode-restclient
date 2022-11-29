@@ -1,0 +1,8 @@
+
+### Get customer authentication settings
+GET {{baseUrl}}/settings/customer-authentication/ 
+accept: application/json
+content-type: application/json
+
+
+

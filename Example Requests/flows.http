@@ -1,0 +1,234 @@
+
+@flowID = flowID
+@flowSlug = flowSlug
+@fieldID = fieldID
+@entryID = entryID
+@fieldSlug = fieldSlug
+
+
+### Get all flows
+GET {{baseUrl}}/flows 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get single flow
+GET {{baseUrl}}/flows/{{flowID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a flow
+POST {{baseUrl}}/flows 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "flow",
+    "name": "Products",
+    "slug": "products",
+    "description": "Extends the default product object",
+    "enabled": true
+  }
+}
+### Update a flow
+PUT {{baseUrl}}/flows/{{flowID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "id": "{{flowID}}",
+    "type": "flow",
+    "name": "FlowUpdated",
+    "enabled": true
+  }
+}
+### Delete a flow
+DELETE {{baseUrl}}/flows/{{flowID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all fields
+GET {{baseUrl}}/fields 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get all fields on a flow
+GET {{baseUrl}}/flows/{{flowSlug}}/fields 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get single field
+GET {{baseUrl}}/fields/{{fieldID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a field
+POST {{baseUrl}}/fields 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "field",
+    "name": "Product Rating",
+    "slug": "product-rating",
+    "field_type": "integer",
+    "validation_rules": [
+      {
+        "type": "between",
+        "options": {
+          "from": 1,
+          "to": 5
+        }
+      }
+    ],
+    "description": "Average rating as given by our users",
+    "required": false,
+    "default": 0,
+    "enabled": true,
+    "order": 1,
+    "relationships": {
+      "flow": {
+        "data": {
+          "type": "flow",
+          "id": "{{flowID}}"
+        }
+      }
+    }
+  }
+}
+### Update a field
+PUT {{baseUrl}}/fields/{{fieldID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "field",
+    "id": "{{fieldID}}",
+    "field_type": "integer",
+    "slug": "product-rating",
+    "name": "Product Rating",
+    "description": "Average rating as given by our users",
+    "required": true,
+    "default": 1
+  }
+}
+### Delete a field
+DELETE {{baseUrl}}/fields/{{fieldID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create an entry
+POST {{baseUrl}}/flows/{{flowSlug}}/entries 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "entry",
+    "FIELD_SLUG": "a value"
+  }
+}
+### Get single entry
+GET {{baseUrl}}/flows/{{flowSlug}}/entries/{{entryID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Update an entry
+PUT {{baseUrl}}/flows/{{flowSlug}}/entries/{{entryID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "entry",
+    "id": "{{entryID}}",
+    "FIELD1_SLUG": "value1",
+    "FIELD2_SLUG": "value2"
+  }
+}
+### Delete a entry
+DELETE {{baseUrl}}/flows/{{flowSlug}}/entries/{{entryID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all entries on a flow
+GET {{baseUrl}}/flows/{{flowSlug}}/entries 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Create an entry relationship
+POST {{baseUrl}}/flows/{{flowSlug}}/entries/{{entryID}}/relationships/{{fieldSlug}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "type": "{RESOURCE_TYPE}",
+      "id": "{RESOURCE_ID}"
+    },
+    {
+      "type": "{RESOURCE_TYPE}",
+      "id": "{RESOURCE_ID}"
+    }
+  ]
+}
+### Update an entry relationship
+PUT {{baseUrl}}/flows/{{flowSlug}}/entries/{{entryID}}/relationships/{{flowSlug}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": [
+    {
+      "type": "{RESOURCE_TYPE}",
+      "id": "{RESOURCE_ID}"
+    }
+  ]
+}
+### Delete a entry relationship
+DELETE {{baseUrl}}/flows/{{flowSlug}}/entries/{{entryID}}/relationships/{{flowSlug}} 
+accept: application/json
+content-type: application/json
+
+
+

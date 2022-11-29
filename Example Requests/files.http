@@ -1,0 +1,53 @@
+
+@fileID = fileID
+
+
+### Get file attributes
+GET {{baseUrl}}/files/attributes 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all files
+GET {{baseUrl}}/files 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get a file
+GET {{baseUrl}}/files/{{fileID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a file
+POST {{baseUrl}}/files 
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="file.png"
+Content-Type: image/png
+
+< ./file.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file_location"
+
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="public"
+
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Delete a file
+DELETE {{baseUrl}}/files/{{fileID}} 
+accept: application/json
+content-type: application/json
+
+
+

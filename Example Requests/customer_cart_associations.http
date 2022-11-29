@@ -1,0 +1,41 @@
+
+@cartID = cartID
+@customerToken = customerToken
+@customerID = customerID
+
+
+### Get customer carts
+GET {{baseUrl}}/carts 
+accept: application/json
+content-type: application/json
+x-moltin-customer-token: {{customerToken}}
+
+
+### Create customer cart association
+POST {{baseUrl}}/carts/{{cartID}}/relationships/customers 
+accept: application/json
+content-type: application/json
+x-moltin-customer-token: {{customerToken}}
+
+{
+  "data": [
+    {
+      "type": "customer",
+      "id": "{{customerID}}"
+    }
+  ]
+}
+### Delete customer cart association
+DELETE {{baseUrl}}/carts/{{cartID}}/relationships/customers 
+accept: application/json
+content-type: application/json
+x-moltin-customer-token: {{customerToken}}
+
+{
+  "data": [
+    {
+      "type": "customer",
+      "id": "{{customerID}}"
+    }
+  ]
+}

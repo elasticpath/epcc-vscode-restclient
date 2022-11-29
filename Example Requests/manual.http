@@ -1,0 +1,38 @@
+
+@orderID = orderID
+
+
+### Authorize
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "manual",
+    "method": "authorize",
+    "amount": 5000,
+    "paymentmethod_meta": {
+      "custom_reference": "custom reference",
+      "name": "payment method name"
+    }
+  }
+}
+### Purchase
+POST {{baseUrl}}/orders/{{orderID}}/payments 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "gateway": "manual",
+    "method": "purchase",
+    "amount": 5000,
+    "paymentmethod_meta": {
+      "custom_reference": "custom reference",
+      "name": "payment method name"
+    }
+  }
+}

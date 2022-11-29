@@ -1,0 +1,89 @@
+
+@customerID = customerID
+
+
+### Get customer attributes
+GET {{baseUrl}}/customers/attributes 
+accept: application/json
+content-type: application/json
+
+
+
+### Get all customers
+GET {{baseUrl}}/customers 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get a customer
+GET {{baseUrl}}/customers/{{customerID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a customer
+POST {{baseUrl}}/customers 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "customer",
+    "name": "Ron Swanson",
+    "email": "ron@example.com",
+    "password": "mysecretpassword"
+  }
+}
+### Update a customer
+PUT {{baseUrl}}/customers/{{customerID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "customer",
+    "name": "Ron Swanson"
+  }
+}
+### Delete a customer
+DELETE {{baseUrl}}/customers/{{customerID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Generate customer token
+POST {{baseUrl}}/customers/tokens 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "token",
+    "email": "ron@example.com",
+    "password": "mysecretpassword",
+    "authentication_mechanism": "password"
+  }
+}
+### Generate customer token with OpenID Connect
+POST {{baseUrl}}/customers/tokens 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "token",
+    "authentication_mechanism": "oidc",
+    "oauth_authorization_code": "c2490f06-6d8e-4927-99aa-4bf02b419e96",
+    "oauth_redirect_uri": "https://example-store.com",
+    "oauth_code_verifier": "0E934PurR8ExVg6Pj7T4kQewxKzWSfSFG5d15FGfww8"
+  }
+}

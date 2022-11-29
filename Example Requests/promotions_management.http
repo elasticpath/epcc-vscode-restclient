@@ -1,0 +1,382 @@
+
+@promotionID = promotionID
+@nodeId = nodeId
+@nodeId1 = nodeId1
+@nodeId2 = nodeId2
+@catalogId = catalogId
+
+
+### Get all promotions
+GET {{baseUrl}}/promotions 
+#	?page[offset]=0
+#	&page[limit]=10
+accept: application/json
+content-type: application/json
+
+
+
+### Get a promotion
+GET {{baseUrl}}/promotions/{{promotionID}} 
+accept: application/json
+content-type: application/json
+
+
+
+### Get a promotion history
+GET {{baseUrl}}/promotions/{{promotionID}}/history 
+accept: application/json
+content-type: application/json
+
+
+
+### Create a cart fixed discount promotion
+POST {{baseUrl}}/promotions 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "promotion",
+    "name": "$10 off",
+    "description": "$10 off your order!",
+    "enabled": true,
+    "automatic": false,
+    "promotion_type": "fixed_discount",
+    "min_cart_value": [
+      {
+        "amount": 10000,
+        "currency": "USD"
+      }
+    ],
+    "schema": {
+      "currencies": [
+        {
+          "currency": "USD",
+          "amount": 1000
+        }
+      ],
+      "exclude": {
+        "targets": [
+          "sku1",
+          "sku2"
+        ],
+        "nodes": [
+          "{{nodeId}}"
+        ]
+      },
+      "target_catalogs": [
+        "{{catalogId}}"
+      ]
+    },
+    "start": "2000-01-01",
+    "end": "2100-01-01"
+  }
+}
+### Create a cart percent discount promotion
+POST {{baseUrl}}/promotions 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "promotion",
+    "name": "10% off",
+    "description": "10% off your order!",
+    "enabled": true,
+    "automatic": false,
+    "promotion_type": "percent_discount",
+    "max_discount_value": [
+      {
+        "amount": 1000,
+        "currency": "USD"
+      }
+    ],
+    "min_cart_value": [
+      {
+        "amount": 10000,
+        "currency": "USD"
+      }
+    ],
+    "schema": {
+      "currencies": [
+        {
+          "currency": "USD",
+          "percentage": 10
+        }
+      ],
+      "exclude": {
+        "targets": [
+          "sku1",
+          "sku2"
+        ],
+        "nodes": [
+          "{{nodeId}}"
+        ]
+      },
+      "target_catalogs": [
+        "{{catalogId}}"
+      ]
+    },
+    "start": "2000-01-01",
+    "end": "2100-01-01"
+  }
+}
+### Create a X for Y discount promotion
+POST {{baseUrl}}/promotions 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "promotion",
+    "name": "X for Y promotion example",
+    "description": "2 for 1 promotion for SKU1",
+    "enabled": true,
+    "automatic": false,
+    "promotion_type": "x_for_y",
+    "max_applications_per_cart": 0,
+    "schema": {
+      "x": 2,
+      "y": 1,
+      "targets": [
+        "SKU1"
+      ],
+      "target_catalogs": [
+        "{{catalogId}}"
+      ]
+    },
+    "start": "2000-01-01",
+    "end": "2100-01-01"
+  }
+}
+### Create a X for amount discount promotion
+POST {{baseUrl}}/promotions 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "promotion",
+    "name": "X for amount promotion example",
+    "description": "2 for 100 promotion for SKU1",
+    "enabled": true,
+    "automatic": false,
+    "promotion_type": "x_for_amount",
+    "max_applications_per_cart": 0,
+    "schema": {
+      "x": 2,
+      "targets": [
+        "SKU1"
+      ],
+      "currencies": [
+        {
+          "amount": 10000,
+          "currency": "USD"
+        }
+      ]
+    },
+    "start": "2000-01-01",
+    "end": "2100-01-01"
+  }
+}
+### Create a fixed bundle discount promotion
+POST {{baseUrl}}/promotions 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "promotion",
+    "name": "Fixed bundle promotion example",
+    "description": "SKU1 and SKU2 for $150",
+    "enabled": true,
+    "automatic": false,
+    "promotion_type": "bundle_fixed_discount",
+    "max_applications_per_cart": 0,
+    "schema": {
+      "requirements": [
+        {
+          "targets": [
+            "SKU1"
+          ],
+          "quantity": 1
+        },
+        {
+          "targets": [
+            "SKU2"
+          ],
+          "quantity": 1
+        }
+      ],
+      "currencies": [
+        {
+          "amount": 15000,
+          "currency": "USD"
+        }
+      ],
+      "target_catalogs": [
+        "{{catalogId}}"
+      ]
+    },
+    "start": "2000-01-01",
+    "end": "2100-01-01"
+  }
+}
+### Create a item fixed discount promotion
+POST {{baseUrl}}/promotions 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "promotion",
+    "name": "Item fixed discount promotion example",
+    "description": "$50 for SKU1",
+    "enabled": true,
+    "automatic": false,
+    "promotion_type": "item_fixed_discount",
+    "max_applications_per_cart": 0,
+    "schema": {
+      "currencies": [
+        {
+          "amount": 5000,
+          "currency": "USD"
+        }
+      ],
+      "targets": [
+        "SKU1"
+      ],
+      "target_catalogs": [
+        "{{catalogId}}"
+      ],
+      "target_nodes": [
+        "{{nodeId1}}",
+        "{{nodeId2}}"
+      ],
+      "exclude": {
+        "targets": [
+          "SKU"
+        ],
+        "nodes": [
+          "{{nodeId1}}",
+          "{{nodeId2}}"
+        ]
+      }
+    },
+    "start": "2000-01-01",
+    "end": "2100-01-01"
+  }
+}
+### Create a item percent discount promotion
+POST {{baseUrl}}/promotions 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "promotion",
+    "name": "Item percent discount promotion example",
+    "description": "50% off for SKU1",
+    "enabled": true,
+    "automatic": false,
+    "promotion_type": "item_percent_discount",
+    "max_applications_per_cart": 0,
+    "schema": {
+      "percent": 50,
+      "targets": [
+        "SKU1"
+      ],
+      "target_catalogs": [
+        "{{catalogId}}"
+      ],
+      "target_nodes": [
+        "{{nodeId1}}",
+        "{{nodeId2}}"
+      ],
+      "exclude": {
+        "targets": [
+          "SKU"
+        ],
+        "nodes": [
+          "{{nodeId1}}",
+          "{{nodeId2}}"
+        ]
+      }
+    },
+    "start": "2000-01-01",
+    "end": "2100-01-01"
+  }
+}
+### Create a free gift promotion
+POST {{baseUrl}}/promotions 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "promotion",
+    "name": "Buy SKU1 and SKU2 to get free gift",
+    "description": "SKU1 and SKU2 for free gift",
+    "enabled": true,
+    "automatic": true,
+    "promotion_type": "bundle_gift",
+    "max_applications_per_cart": 0,
+    "schema": {
+      "requirements": [
+        {
+          "targets": [
+            "SKU1"
+          ],
+          "quantity": 1
+        },
+        {
+          "targets": [
+            "SKU2"
+          ],
+          "quantity": 1
+        }
+      ],
+      "gifts": [
+        "gift"
+      ],
+      "target_catalogs": [
+        "{{catalogId}}"
+      ]
+    },
+    "start": "2020-01-01",
+    "end": "2100-01-01"
+  }
+}
+### Update a promotion
+PUT {{baseUrl}}/promotions/{{promotionID}} 
+accept: application/json
+content-type: application/json
+
+
+{
+  "data": {
+    "type": "promotion",
+    "id": "{{promotionID}}",
+    "name": "Promotion name",
+    "description": "description",
+    "enabled": true,
+    "automatic": false,
+    "start": "2000-01-01",
+    "end": "2100-01-01"
+  }
+}
+### Delete a promotion
+DELETE {{baseUrl}}/promotions/{{promotionID}} 
+accept: application/json
+content-type: application/json
+
+
+
